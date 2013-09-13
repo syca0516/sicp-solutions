@@ -1,0 +1,21 @@
+
+(define (filter predicate sequence)
+  (cond ((null? sequence) '())
+        ((predicate (car sequence))
+         (cons (car sequence)
+               (filter predicate (cdr sequence))))
+        (else (filter predicate (cdr sequence)))))
+
+(define (same-parity sample . rest)
+  (cons sample (filter (if (even? sample) even? odd?) rest)))
+;;下面这个版本有点问题，它不能去除掉空值
+(define (cm-same-parity . x)
+  (let ((flag (even? (car x)))
+        (first (car x)))
+    (define (iter lst)
+      (if (null? lst)
+          '()
+          (cons (if (equal? flag (even? (car lst)))
+                    (car lst))
+                (iter (cdr lst)))))
+    (cons first (iter (cdr x)))))

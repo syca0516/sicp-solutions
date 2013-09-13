@@ -1,0 +1,5 @@
+;;;请考虑，在一个可以对过程做各种操作的语言里，我们完全可以没有数（至少在只考虑非负整数的情况下），可以将0和加一操作实现为：
+(define zero (lambda (f) (lambda (x) x)))
+
+(define (add-1 n)
+  (lambda (f) (lambda (x) (f ((n f) x)))))

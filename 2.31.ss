@@ -1,0 +1,12 @@
+;;将你在练习2.30做出的解答进一步抽象，做出一个过程，使它的性质保证能以下面形式定义square-tree
+;;(define (square-tree tree) (tree-map square tree))
+(load "sicp.ss")
+(load "2.30.ss")
+(define (tree-map fn tree)
+  (map (lambda (s)
+	 (if (pair? s)
+	     (tree-map fn s)
+	     (fn s)))
+       tree))
+(define (square-tree tree)
+  (tree-map square tree))

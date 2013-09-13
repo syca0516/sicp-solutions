@@ -1,0 +1,18 @@
+;;一个二叉活动体由两个分支组成，一个是左分支，另一个是右分支。每个分支是一个具有确定长度的杆，上面或者吊着一个重量，或者吊着另一个二叉活动体。我们可以用复合数据对象表示这种二叉活动体，将它通过其两个分支构造起来（例如，使用list）：
+(define (make-mobile left right)
+  (list left right))
+;;分支可以从一个length（它应该是一个数）再加上一个structure构造出来，这个structure或者一个数（表示一个简单重量），或者是另一个活动体：
+(define (make-branch length structure)
+  (list length structure))
+;; a) 请写出相应的选择函数left-branch和right-branch，它们分别返回活动体的两个分支。还有branch-length和branch-structure，它们返回一个分支上的成分。
+(define (branch-length brc)
+  (car brc))
+(define (branch-structure brc)
+  (cadr brc))
+(define (left-branch mb)
+  (car mb))
+(define (right-branch mb)
+  (cadr mb))
+;; b) 用你的选择函数定义过程total-weight，它返回一个活动体的总重量。
+(define (total-weight mobile)
+)
