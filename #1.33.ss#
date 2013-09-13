@@ -1,0 +1,14 @@
+;;;给出filtered-accumulate的定义
+(load "sicp.ss")  ;;其中有prime?和identity的定义
+(define (filtered-accumulate  combiner null-value filter-func term  a next b)
+  (if (> a b)
+      null-value
+      (if (filter-func a)
+	  (combiner (term a)
+		    (filtered-accumulate combiner null-value filter-func term (next a) next b))
+	  (combiner null-value
+		    (filtered-accumulate combiner null-value filter-func term (next a) next b)))))
+
+(define (sum-prime a b)
+  (define (next x) (+  x  1))
+  (filtered-accumulate + 0 prime?  identity a next b))s
