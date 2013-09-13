@@ -1,9 +1,0 @@
-;;;写出sum过程的迭代版本
-(load "1.29.ss")
-(define (sum term a next b)
-  "This is iteration version of sum"
-  (define (iter a result)
-    (if (> a b)
-	0
-	(iter (next a) (+ result (term a)))))
-  (iter a 0))

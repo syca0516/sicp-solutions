@@ -1,8 +1,0 @@
-;;修改reverse过程，得到一个deep-reverse过程。它以一个表为参数，返回另一个表作为值，结果表中的元素翻转过来，其中的子树也反转
-(load "2.18.ss")
-(define (deep-reverse lst)
-  (cond ((null? lst) '())
-	((not (pair? lst)) lst)
-	(else
-	 (reverse (list (deep-reverse (car lst))
-			(deep-reverse (cadr lst)))))))
