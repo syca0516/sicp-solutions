@@ -1,0 +1,29 @@
+
+;;;对于确定很小的数的平方根而言，在计算平方根中使用的检测good-enough？是很不好的。还有，
+;;;在现实的计算机里，算数运算总是以一定的有限精度进行的。这也会使我们的检测不适合非常大的
+;;;计算。请解释上述论断，用例子说明对很小和很大的数，这种检测都可能失败。实现good-enough?
+;;;的另一种策略是监视猜测值在从一次迭代到下一次的变化情况，当改变值相对于猜测值的比率很小时
+;;;就结束。请设计一个采用这种终止测试方式的平方根过程。对于很大和很小的数，这一方式都能工作
+;;;吗?
+
+(define (sqrt-iter guess x)
+  (if (good-enough? guess x)
+      guess
+      (sqrt-iter (improve guess x) x)))
+
+(define (improve guess x)
+  (average guess (/ x guess)))
+
+(define (average x y)
+  (/ (+ x y) 2))
+
+(define (good-enough? guess x)
+  (<  (/ (abs (- (improve guess x) guess))
+         guess)
+      0.001))
+
+(define (square x)
+  (* x x))
+
+(define (sqrt x)
+  (sqrt-iter 1.0 x))
