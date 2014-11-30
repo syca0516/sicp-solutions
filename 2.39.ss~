@@ -1,4 +1,0 @@
-(load "sicp.ss")
-(load "2.38.ss")
-(define (reverse sequence)
-  (fold-right (lambda (x y) (cons y x)) '() sequence))
